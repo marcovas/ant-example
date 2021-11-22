@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ant-example" default="all">
+	<property name="base" location="." />
+	<property name="dist" location="dist" />
+	<property name="src" location="src" />
+	<property name="resources" location="resources" />
+	<property name="build" location="build" />
+	<target name="initialise">
+		<!-- Cria os diretórios necessários -->
+		<mkdir dir="${build}/classes" />
+		<mkdir dir="${dist}" />
+	</target>
+	<target name="compile" depends="initialise">
+		<!-- Compila o projeto -->
+		<javac srcdir="${src}" destdir="${build}/classes" sourcepath="${src}" source="1.7" target="1.7" encoding="UTF-8">
+			<include name="**/*.java" />
+		</javac>
+		<!-- Copia os recursos -->
+		<copy todir="${build}/classes">
+			<fileset dir="${resources}" />
+		</copy>
+	</target>
+
+	<target name="jar" depends="compile">
+		<!-- Cria o JAR -->
+		<jar jarfile="${dist}/${ant.project.name}.jar">
+			<fileset dir="${build}/classes" />
+		</jar>
+	</target>
+
+	<!-- Limpa tudo que foi gerado -->
+	<target name="clean">
+		<delete dir="${dist}" />
+		<delete dir="${build}" />
+	</target>
+
+	<target name="all" depends="jar">
+	</target>
+</project>
