@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="ant-example" default="all">
+<project name="ant-example" default="jar">
 	<property name="base" location="." />
 	<property name="dist" location="dist" />
 	<property name="src" location="src" />
@@ -34,6 +34,4 @@
 		<delete dir="${build}" />
 	</target>
 
-	<target name="all" depends="jar">
-	</target>
 </project>
